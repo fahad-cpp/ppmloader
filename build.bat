@@ -8,6 +8,6 @@ rename ppmloader.exe ppmloaderold.exe
 popd
 echo Compiling:
 dir /b src\*.cpp
-g++ src\*.cpp int\resource.o -lgdi32 -o bin\ppmloader.exe
+g++ src\*.cpp int\resource.o -lgdi32 -mwindows -o bin\ppmloader.exe
 if exist bin\ppmloader.exe echo Compiled to bin\ppmloader.exe.
 pause
