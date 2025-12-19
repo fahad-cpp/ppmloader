@@ -1,4 +1,5 @@
-#pragma once
+#ifndef WINDOW
+#define WINDOW
 #define _CRT_SECURE_NO_WARNINGS
 #include <Windows.h>
 #include <iostream>
@@ -37,3 +38,4 @@ public:
 	inline RenderState* getRenderState() { return  &renderState; }
 	inline bool isOpen() const { return IsWindow(mWindowHandle); }
 };
+#endif

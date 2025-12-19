@@ -1,4 +1,5 @@
-#pragma once
+#ifndef RENDERER
+#define RENDERER
 #include <cmath>
 #include "Window.h"
 //CPU renderer
@@ -13,3 +14,4 @@ struct Renderer {
 };
 template<typename T>
 void clamp(T& num, T min_limit, T max_limit);
+#endif
