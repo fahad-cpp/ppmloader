@@ -2,6 +2,8 @@
 #define RENDERER
 #include <cmath>
 #include "Window.h"
+#include "PPMLoader.h"
+
 //CPU renderer
 struct Renderer {
 	Window* renderWindow;

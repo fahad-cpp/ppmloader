@@ -5,9 +5,6 @@
 #include <iostream>
 #include <string>
 typedef unsigned int u32;
-struct size2{
-    u32 x,y;
-};
 LRESULT CALLBACK windowProcedure(HWND window,UINT msg,WPARAM wParam,LPARAM lParam);
 struct RenderState {
 	int width;

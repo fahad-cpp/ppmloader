@@ -1,13 +1,25 @@
 @echo off
-if not exist int mkdir int
-windres resource.rc -o int\resource.o
-if not exist bin mkdir bin
-pushd bin
-if exist ppmloaderold.exe del ppmloaderold.exe
-rename ppmloader.exe ppmloaderold.exe
-popd
-echo Compiling:
-dir /b src\*.cpp
-g++ -mwindows -DNDEBUG -D_NDEBUG -O3 src\*.cpp int\resource.o -lgdi32 -o bin\ppmloader.exe
-if exist bin\ppmloader.exe echo Compiled to bin\ppmloader.exe.
-pause
+setlocal
+
+if not exist build mkdir build
+if exist bin\ppmloader.exe del bin\ppmloader.exe
+
+where cmake >nul 2>nul
+if errorlevel 1 (
+    echo "CMake not found."
+    exit /b 1
+)
+
+cmake -S . -B build -DCMAKE_BUILD_TYPE=%CONFIG% >nul 2>nul
+if errorlevel 1 (
+    echo "CMake build files generation failed."
+    exit /b 1
+)
+
+cmake --build build --config Release --parallel
+if errorlevel 1 (
+    echo "CMake build failed."
+    exit /b 1
+)
+
+bin\ppmloader test\valid.ppm

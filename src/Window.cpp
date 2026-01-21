@@ -15,7 +15,6 @@ Window::Window(const char* name, unsigned int width, unsigned int height,const s
 	RegisterClassA(&mWindowClass);
 	DWORD dwStyle=(WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX);
 	mWindowHandle = CreateWindowA(mWindowClass.lpszClassName, name, dwStyle, CW_USEDEFAULT, CW_USEDEFAULT, width, height, 0, 0, NULL, this);
-	//hideWindow();
 	mDeviceContextHandle = GetDC(mWindowHandle);
 
 	renderState.height = height;
