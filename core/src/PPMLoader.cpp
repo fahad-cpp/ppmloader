@@ -1,30 +1,6 @@
 #include "PPMLoader.h"
 #include "Timer.h"
 #include <algorithm>
-std::vector<std::string> split(const std::string& str, char del) {
-    int count = (std::count(str.begin(), str.end(), del) + 1);
-    int strsize = str.length();
-    std::vector<std::string> output = {};
-    output.reserve(count);
-    int beg = 0;
-    int end = 0;
-    const char* ptr = str.c_str();
-
-    for (int i = 0;i <= strsize;i++) {
-        if (*ptr == del) {
-            if (beg < end)
-                output.push_back(std::string(str.begin() + beg, str.begin() + end));
-            beg = end + 1;
-        }
-        else if (i == strsize) {
-            output.push_back(std::string(str.begin() + beg, str.begin() + end));
-            break;
-        }
-        end++;
-        ptr++;
-    }
-    return output;
-}
 std::vector<std::string> getTokens(char* str, size_t size) {
     std::vector<std::string> output;
     char* ptr = str;
@@ -34,7 +10,7 @@ std::vector<std::string> getTokens(char* str, size_t size) {
     for (size_t i = 0; i < size; i++) {
         if (*ptr == ' ' || *ptr == '\n' || *ptr == '\t') {
             if (beg < end) {
-                output.push_back(std::string(beg, end - beg));
+                output.emplace_back(beg, end - beg);
             }
 
             ptr++;
@@ -47,7 +23,7 @@ std::vector<std::string> getTokens(char* str, size_t size) {
         end++;
     }
     if (beg < end) {
-        output.push_back(std::string(beg, end - beg));
+        output.emplace_back(beg, end - beg);
     }
 
     return output;

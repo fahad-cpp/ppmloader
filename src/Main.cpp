@@ -7,16 +7,11 @@ int main(int argc,char* argv[]){
         std::cout << "Usage: ppmloader.exe x.ppm\n";
         return 0;
     }
-
     u32* imageBuffer = nullptr;
     std::string filename = argv[1];
     size2 buffersize;
 
     std::thread ppmThread(loadPPM,filename,&imageBuffer,&buffersize);
-    //Timer timer;
-    //loadPPM(filename,&imageBuffer,&buffersize);
-    // timer.Stop();
-    // std::cout << "loadPPM():" << timer.dtms << "ms\n";
     
     std::string windowName = "PPMLoader - "+filename;
     Window window(windowName.c_str(),0,0,"res\\icon.ico");
@@ -29,12 +24,13 @@ int main(int argc,char* argv[]){
     }
     window.resize(buffersize.x,buffersize.y);
     window.hideWindow(false);
+    //Only render once for now
+    renderer.clear(0x000000);
+    renderer.drawBuffer(imageBuffer,buffersize);
+    window.swapBuffers();
     while(window.isOpen()){
-        renderer.clear(0x000000);
         window.processMessages();
-        renderer.drawBuffer(imageBuffer,buffersize);
-        window.swapBuffers();
-        std::this_thread::sleep_for(std::chrono::milliseconds(5));
+        std::this_thread::sleep_for(std::chrono::milliseconds(9));
     }
 
     free(imageBuffer);
