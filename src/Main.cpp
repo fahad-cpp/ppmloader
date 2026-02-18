@@ -24,11 +24,10 @@ int main(int argc,char* argv[]){
     }
     window.resize(buffersize.x,buffersize.y);
     window.hideWindow(false);
-    //Only render once for now
-    renderer.clear(0x000000);
-    renderer.drawBuffer(imageBuffer,buffersize);
-    window.swapBuffers();
     while(window.isOpen()){
+        renderer.clear(0x000000);
+        renderer.drawBuffer(imageBuffer,buffersize);
+        window.swapBuffers();
         window.processMessages();
         std::this_thread::sleep_for(std::chrono::milliseconds(9));
     }
