@@ -11,7 +11,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 
 project(ppmloader)
 
-file(GLOB SOURCES src/*.cpp)
+file(GLOB SOURCES src/*.cpp resource.rc)
 
 add_subdirectory(core)
 

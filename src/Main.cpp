@@ -18,7 +18,7 @@ int main(int argc,char* argv[]){
     window.removeConsole();
     Renderer renderer(&window);
     ppmThread.join();
-    if(!imageBuffer){
+    if(imageBuffer == nullptr){
         MessageBoxA(window.get(),"Invalid ppm file","ERROR",MB_OK);
         return 1;
     }

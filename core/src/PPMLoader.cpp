@@ -41,6 +41,7 @@ void loadPPM(const std::string filename, u32** pbuffer, size2* res) {
         return;
     }
     size_t filesize = ifs.tellg();
+    if(!filesize)return;
     ifs.seekg(0);
     
     std::vector<char> wholeFile = {};
@@ -50,7 +51,6 @@ void loadPPM(const std::string filename, u32** pbuffer, size2* res) {
     std::vector<std::string> tokens = getTokens(wholeFile.data(),filesize);
     if ((tokens[0].find("P3") == std::string::npos) && (tokens[0].find("P6") == std::string::npos)) {
         std::cerr << "Invalid PPM file : " << filename << '\n';
-        pbuffer = nullptr;
         return;
     }
     width = std::stoi(tokens[1]);
