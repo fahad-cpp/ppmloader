@@ -6,14 +6,14 @@ endif()
 
 set(CMAKE_CXX_FLAGS "-Wall -Wextra")
 set(CMAKE_CXX_FLAGS_DEBUG "-g")
-set(CMAKE_CXX_FLAGS_RELEASE "-mwindows -O3")
+set(CMAKE_CXX_FLAGS_RELEASE "-mwindows -O3 -march=native")
 
-project(libppmloader)
+project(core)
 
 file(GLOB SOURCES src/*.cpp)
-add_library(libppmloader ${SOURCES})
+add_library(core ${SOURCES})
 
-target_include_directories(libppmloader PUBLIC src)
+target_include_directories(core PUBLIC src)
 
-target_compile_definitions(libppmloader PUBLIC -DNDEBUG -D_NDEBUG)
-target_compile_options(libppmloader PUBLIC -O3)
+target_compile_definitions(core PUBLIC -DNDEBUG -D_NDEBUG)
+target_compile_options(core PUBLIC -O3)

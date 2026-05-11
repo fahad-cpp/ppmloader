@@ -11,7 +11,7 @@ if errorlevel 1 (
     exit /b 1
 )
 pushd build
-cmake -S .. -G "Ninja" -B . -DCMAKE_BUILD_TYPE=%CONFIG% >nul 2>error.txt
+cmake -S .. -G "Ninja" -B . -DCMAKE_CXX_COMPILER="clang++" -DCMAKE_BUILD_TYPE=%CONFIG% >nul 2>error.txt
 if errorlevel 1 (
     echo CMake build files generation failed.
     exit /b 1

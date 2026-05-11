@@ -6,7 +6,7 @@ endif()
 
 set(CMAKE_CXX_FLAGS "-Wall -Wextra")
 set(CMAKE_CXX_FLAGS_DEBUG "-g")
-set(CMAKE_CXX_FLAGS_RELEASE "-mwindows -O3")
+set(CMAKE_CXX_FLAGS_RELEASE "-mwindows -O3 -march=native -flto -fuse-ld=lld -pthread")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 
 project(ppmloader)
@@ -14,9 +14,10 @@ project(ppmloader)
 file(GLOB SOURCES src/*.cpp resource.rc)
 
 add_subdirectory(core)
+add_subdirectory(vendor/FSWindow)
 
 add_executable(ppmloader ${SOURCES})
 
-target_link_libraries(ppmloader PUBLIC libppmloader)
+target_link_libraries(ppmloader PUBLIC core FSWindow)
 
 target_compile_definitions(ppmloader PUBLIC -DNDEBUG -D_NDEBUG)
