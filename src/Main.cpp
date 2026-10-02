@@ -1,14 +1,23 @@
 #include "PPMLoader.h"
 #include "Renderer.h"
-#include "Timer.h"
+#include <thread>
+#include <iostream>
+#include "Window.h"
+int
+WinMain([[maybe_unused]]HINSTANCE hInstance,[[maybe_unused]] HINSTANCE hPrevInstance,[[maybe_unused]] LPSTR lpCmdLine,[[maybe_unused]] int nShowCmd){
+    int argc;
 
-int main(int argc,char* argv[]){
+    wchar_t** argv = CommandLineToArgvW(
+        GetCommandLineW(),
+        &argc
+    );
     if(argc != 2){
         std::cout << "Usage: ppmloader.exe x.ppm\n";
         return 0;
     }
     u32* imageBuffer = nullptr;
-    std::string filename = argv[1];
+    std::wstring ws = argv[1];
+    std::string filename = std::string(ws.begin(),ws.end());
     size2 buffersize;
 
     std::thread ppmThread(loadPPM,filename,&imageBuffer,&buffersize);

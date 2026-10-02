@@ -1,6 +1,5 @@
 #ifndef RENDERER
 #define RENDERER
-#include <cmath>
 #include "Window.h"
 #include "PPMLoader.h"
 
@@ -11,7 +10,7 @@ struct Renderer {
 		renderWindow = window;
 	}
 	void clear(u32 colour);
-	void putPixel(int x, int y, u32 color);
+	void putPixel(uint32_t x, uint32_t y, u32 color);
 	void drawBuffer(u32* buffer,size2 dimension);
 };
 template<typename T>

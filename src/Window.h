@@ -2,13 +2,12 @@
 #define WINDOW
 #define _CRT_SECURE_NO_WARNINGS
 #include <Windows.h>
-#include <iostream>
 #include <string>
 typedef unsigned int u32;
 LRESULT CALLBACK windowProcedure(HWND window,UINT msg,WPARAM wParam,LPARAM lParam);
 struct RenderState {
-	int width;
-	int height;
+	uint32_t width;
+	uint32_t height;
 	void* screenBuffer;
 	BITMAPINFO bitmapInfo;
 };

@@ -1,10 +1,5 @@
 #pragma once
-#include <fstream>
-#include <iostream>
 #include <string>
-#include <thread>
-#include <vector>
-#include <sstream>
 
 
 typedef unsigned int u32;

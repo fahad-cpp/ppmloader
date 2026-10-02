@@ -69,7 +69,7 @@ LRESULT windowProcedure(HWND window, UINT msg, WPARAM wParam, LPARAM lParam) {
 		if (renderStateU->screenBuffer)VirtualFree(renderStateU->screenBuffer, 0, MEM_RELEASE);
 		renderStateU->screenBuffer = VirtualAlloc(0, bufferSize, MEM_COMMIT | MEM_RESERVE, PAGE_READWRITE);
 
-		int dBufferSize = renderStateU->width * renderStateU->height * sizeof(float);
+		//int dBufferSize = renderStateU->width * renderStateU->height * sizeof(float);
 
 		renderStateU->bitmapInfo.bmiHeader.biSize = sizeof(renderStateU->bitmapInfo.bmiHeader);
 		renderStateU->bitmapInfo.bmiHeader.biWidth = renderStateU->width;

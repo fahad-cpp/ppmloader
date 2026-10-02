@@ -1,4 +1,5 @@
 #include "Renderer.h"
+#include <iostream>
 template<typename T>
 void clamp(T& num, T min_limit, T max_limit) {
 	if (num < min_limit) {
@@ -12,7 +13,7 @@ void clamp(T& num, T min_limit, T max_limit) {
 	return;
 }
 
-void Renderer::putPixel(int x, int y, u32 color) {
+void Renderer::putPixel(uint32_t x, uint32_t y, u32 color) {
 	u32* pixel = (u32*)renderWindow->renderState.screenBuffer + x + (y * renderWindow->renderState.width);
 	if((x < 0 || x > renderWindow->renderState.width) || (y < 0 || y > renderWindow->renderState.height))
 		std::cout<<"Null pixel";
@@ -28,11 +29,8 @@ void Renderer::clear(u32 color) {
 	}
 }
 void Renderer::drawBuffer(u32* buffer,size2 dimension){
-	if((renderWindow->renderState.width < dimension.x) || (renderWindow->renderState.height < dimension.y)){
-		renderWindow->resize(dimension.x,dimension.y);
-	}
-	for(int y=0;y<dimension.y;y++){
-		for(int x=0;x<dimension.x;x++){
+	for(uint32_t y=0;y<dimension.y;y++){
+		for(uint32_t x=0;x<dimension.x;x++){
 			if((x < 0 || x > renderWindow->renderState.width) || (y < 0 || y > renderWindow->renderState.height)){
 				continue;
 			}
